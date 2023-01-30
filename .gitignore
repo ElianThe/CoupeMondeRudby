@@ -15,3 +15,5 @@
 #Intellij files
 *.iml
 .idea/*
+
+composer.lock
