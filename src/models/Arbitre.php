@@ -9,6 +9,11 @@ class Arbitre extends Model
     protected $primaryKey = 'numArbitre';
     public $timestamps = false;
 
+
+    public function matchs (){
+        return $this->belongsToMany('\rugby\models\Matchs', 'arbitrer', 'NumArbitre', 'NumMatch');
+    }
+
     public static function afficherArbitre (){
         $arbitres = Arbitre::all();
         $afficherArbitre = "<table><tr> <td>numArbitre</td> <td>nomArbitre</td> <td>nationalite</td> </tr>";

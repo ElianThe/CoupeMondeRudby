@@ -10,8 +10,16 @@ class Joueur extends \Illuminate\Database\Eloquent\Model
 
     public $timestamps = false;
 
+    // le poste d'un joueur
+    public function poste (){
+        return  $this->belongsTo('rugby\models\Poste', 'numPoste');
+    }
     public function equipe(){
         return $this->belongsTo('rugby\models\Equipe', 'CodeEquipe');
+    }
+
+    public function matchs () {
+        return $this->belongsToMany('rugby\models\Matchs', 'jouer', 'numJoueur', 'numMatch')->withPivot(['tpsJeu', 'titulaire']);
     }
 
     public static function afficherJoueur () : string {

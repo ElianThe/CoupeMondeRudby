@@ -9,7 +9,7 @@ class Equipe extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
 
-    public function matches (){
+    public function matchesReceveur (){
         return $this->hasMany('rugby\models\Matchs', 'numEquipeR')->orWhere('numEquipeD', $this->id);
     }
 

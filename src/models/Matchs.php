@@ -20,6 +20,16 @@ class Matchs extends Model
         return $this->belongsTo('rugby\models\Equipe', 'numEquipeD');
     }
 
+    public function joueurs (){
+        return $this->belongsToMany('rugby\models\Joueur', 'jouer', 'NumMatch', 'NumJoueur');
+    }
+
+    public function afficherMatch($id) : string {
+        $match = Matchs::where('numMatch', $id)->first();
+        $afficherMatch = "numMatch :" . $match->numMatch .  ", nbSpectateur : " .$match->nbSpect . $match->numStade . ", numero equipe1 : " . $match->numEquipeR  . ", score : " . $match->scoreR . ", nbEssais : " . $match->nbEssaisR . ", NumEquipe 2 :" . $match->numEquipeD  . ", score : ". $match->scoreD . ", nbEssais " . $match->nbEssaisD .  "</br>";
+        return  $afficherMatch;
+    }
+
     public static function afficherMatchs () : string {
         $afficherMatch = "<table><tr><td>numMatch</td> <td>dateMatch</td> <td>nbSpect</td> <td>numStade</td> <td>numEquipeR</td> <td>scoreR</td> <td>numEquipeD</td> <td>scoreD</td> <td>nbEssaisD</td></tr>";
         $matchs = Matchs::all();
@@ -29,4 +39,7 @@ class Matchs extends Model
         $afficherMatch .= "</table>";
         return $afficherMatch;
     }
+
+
+
 }
